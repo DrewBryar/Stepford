@@ -6,15 +6,22 @@ TOKEN = open("token.txt","r").readline()
 
 bot = commands.Bot(command_prefix = '$')
 
-# TTS------------------------------------
+# TTS______________________________________________________
 # https://pypi.org/project/pyttsx3/
+# >> pip install pyttsx3
 engine = pyttsx3.init()
 rate = engine.getProperty('rate')
 volume = engine.getProperty('volume')
 
 voices = engine.getProperty('voices')
-engine.setProperty('voice', voices[1].id) #The variable in voices represents a male voice (0) and a female voice (1).
-# ----------------------------------------
+engine.setProperty('voice', voices[0].id) #The variable in voices represents a male voice (0) and a female voice (1).
+# Maybe pursue new voices? They seem to be system dependent.
+# __________________________________________________________
+
+# Speech Recognition________________________________________
+# https://pypi.org/project/SpeechRecognition/
+# >> pip install SpeechRecognition
+# __________________________________________________________
 
 
 @bot.event
@@ -43,11 +50,5 @@ async def pong(ctx):
 async def voice(ctx):
     await ctx.send(f'My volume is at {volume} and the rate is {rate}')
 
-@bot.command()
-async def pitchUp(ctx):
-    newRate = engine.getProperty('rate') + 100
-    engine.setProperty('rate', newRate)
-    engine.say("How is this, sir?")
-    engine.runAndWait()
 
 bot.run(TOKEN) 
