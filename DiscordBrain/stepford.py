@@ -6,6 +6,11 @@ TOKEN = open("token.txt","r").readline()
 
 bot = commands.Bot(command_prefix = '$')
 
+# Discord.py_______________________________________________
+# https://pypi.org/project/discord.py/
+# >> pip install discord.py
+
+
 # TTS______________________________________________________
 # https://pypi.org/project/pyttsx3/
 # >> pip install pyttsx3
