@@ -33,9 +33,4 @@ async def ping(ctx):
 async def pong(ctx):
     await ctx.send(f'PING! {round (bot.latency * 1000)} ms')
 
-@bot.command()
-async def voice(ctx):
-    await ctx.send(f'My volume is at {volume} and the rate is {rate}')
-
-
 bot.run(TOKEN) 
