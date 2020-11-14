@@ -1,12 +1,17 @@
 import discord 
 from discord.ext import commands
+import pyttsx3
+
+
 # End of Script we run...
 TOKEN = open("token.txt","r").readline()
 
 bot = commands.Bot(command_prefix = 'Stepford, please ')
 
 # TTS______________________________________________________
+engine = pyttsx3.init()
 
+voices = engine.getProperty('voices')
 # __________________________________________________________
 
 # Speech Recognition________________________________________
@@ -22,6 +27,8 @@ async def on_ready():
     print(bot.user.id)
     print('Back to work, sir.')
     print('--------------------')
+    engine.say("Hello world!")
+    engine.runAndWait()
 
 # answers with the ms latency
 #TEST COMMANDS
