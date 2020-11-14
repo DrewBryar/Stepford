@@ -47,7 +47,7 @@ async def pong(ctx):
 @bot.command()
 async def love(ctx):
     await ctx.send(f'I will let him know.')
-    engine.say("Anne is thinking about you.")
+    engine.say("Sir, your lovely girlfriend is thinking about you.")
     engine.runAndWait()
 
 @bot.command()
