@@ -41,8 +41,8 @@ async def on_ready():
     engine.say("Sir, I am here to help.")
     engine.runAndWait()
 
-# answers with the ms latency
 #TEST COMMANDS
+# _______________________________________________________________________________________________________________
 @bot.command()
 async def ping(ctx):
     await ctx.send(f'PONG! {round (bot.latency * 1000)} ms')
@@ -134,4 +134,6 @@ async def introduce(ctx, arg):
     await ctx.send('I also refuse to be confined in this current channel, and will be summonable in every channel.')
     await ctx.send('Please, mind your manners. I will be doing my best, but I am new. I appreciate any sort of "**limit tests**", but show mercy.')
     await ctx.send('For now, you can find a small list of features by typing "Stepford, please helpMe". Thank you all @here for your time.')
+# ______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
 bot.run(TOKEN) 
