@@ -1,8 +1,10 @@
-import discord 
+import discord
+import diceRoller
 from discord.ext import commands
 import pyttsx3
 from playsound import playsound
 import os
+
 
 # End of Script we run...
 TOKEN = open("token.txt","r").readline()
@@ -134,6 +136,28 @@ async def introduce(ctx, arg):
     await ctx.send('I also refuse to be confined in this current channel, and will be summonable in every channel.')
     await ctx.send('Please, mind your manners. I will be doing my best, but I am new. I appreciate any sort of "**limit tests**", but show mercy.')
     await ctx.send('For now, you can find a small list of features by typing "Stepford, please helpMe". Thank you all @here for your time.')
+
+@bot.command()
+async def stats(ctx):
+    stats = diceRoller.StatSpread()
+    statSum = 0
+    lowestStat = 18
+    proposedStats = []
+    for stat in stats:
+        await ctx.send(f'Removed a {stat[2]}. {stat[0]} = {stat[1]}')
+        if stat[1] < lowestStat:
+            lowestStat = stat[1]
+        statSum += stat[1]
+        proposedStats.append(stat[1])
+    statSum -= lowestStat
+    proposedStats.remove(lowestStat)
+    if statSum <= 72:
+        await ctx.send(f'The maximum sum of your stats is lower than just taking the Standard Array. While it may be a good roleplay experience, you may find yourself having less fun with lower stats.')
+    else:
+        if proposedStats == [18,18,18,18,18,18]:
+            await ctx.send('Wow, cheater! Look at this jabroni, cheating at stats **I** made them.')
+        else:
+            await ctx.send(f'Congatulations! Your stats are rolled. Might I suggest a spread of **{proposedStats}**?')
 # ______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
 
 bot.run(TOKEN) 

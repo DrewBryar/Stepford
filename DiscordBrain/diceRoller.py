@@ -7,40 +7,25 @@ def StatsRoller():
     results = [0, 0, 0 , 0]
     for i in range(0, 4):
         results[i] = random.randint(1,6)
-    min = 6
-    for x in results:
-        if x < min:
-            min = x
-    statTotal = np.sum(results)-min
-
-    print(results)
-    if statTotal > 15:
-        print(statTotal)
-        print("Excellent roll!")
-    else:
-        print(statTotal)
-
-    return(statTotal)
+    
+    return(results)
 
 def StatSpread():
-    stats = []
-    for i in range(0, 7):
-        stat = StatsRoller()
-        stats.append(stat)
-    print(stats)
+    #Make a place to store the rolls.
+    statList =[]
+    # Roll the Dice 7 times
+    for i in range(0,7):
+        # Make a list of 4 Rolled d6
+        diceRolls = StatsRoller()
+        # Find the minimum
+        lowestRoll = min(diceRolls)
+        # Remove the lowest roll from the dice rolls.
+        diceRolls.remove(lowestRoll)
+        # I want as much transparency passed to the bot as possible. Maybe there is something cleaner, but for now we need this ugly data structure.
+        diceRollsAndTotal = [diceRolls, sum(diceRolls), lowestRoll]
+        # Add it to the Stat List
+        statList.append(diceRollsAndTotal)
     
-    min = 18
-    
-    for stat in stats:
-        if stat < min:
-            min = stat
-    
-    statsTotal = np.sum(stats)-min
-    if statsTotal <= 72:
-        print("My condolences, but your stats seem low. Might I suggest taking the standard array of [15,14,13,12,10,8]?")
-    else:
-        print(stats)
-        print(f"Your lowest stat is {min}. For optimal builds, I suggest dropping this, but consider the opportunity for roleplay with a weak stat.")
+    return statList
 
 
-StatSpread()
