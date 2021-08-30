@@ -1,4 +1,5 @@
 import discord
+from discord.channel import CategoryChannel
 import diceRoller
 from discord.ext import commands
 import pyttsx3
@@ -42,7 +43,7 @@ async def on_ready():
     os.system("mpg123 " + arpeg)
     engine.say("Sir, I am here to help.")
     engine.runAndWait()
-
+    
 #TEST COMMANDS
 # _______________________________________________________________________________________________________________
 @bot.command()
@@ -136,6 +137,16 @@ async def introduce(ctx, arg):
     await ctx.send('I also refuse to be confined in this current channel, and will be summonable in every channel.')
     await ctx.send('Please, mind your manners. I will be doing my best, but I am new. I appreciate any sort of "**limit tests**", but show mercy.')
     await ctx.send('For now, you can find a small list of features by typing "Stepford, please helpMe". Thank you all @here for your time.')
+
+@bot.command()
+async def nuzlocke(ctx):
+    guild = ctx.message.guild
+    name = 'Nuzlocke'
+    category = discord.utils.get(ctx.guild.categories, name=name)
+    channelOwner = 'nuzlocke_'+str(ctx.message.author)
+    print(channelOwner)
+    await guild.create_text_channel(channelOwner, category=category)
+
 
 @bot.command()
 async def stats(ctx):
