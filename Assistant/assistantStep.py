@@ -37,11 +37,22 @@ while True:
         text = get_audio()
 
         ALARM_STRS = ["alarm", "set an alarm", "wake me up"]
+        for phrase in ALARM_STRS:
+            if phrase in text:
+                speak("When do you want to wake up?")
+                alarm_command = get_audio()
+                morning = True
+                if "p.m" in alarm_command:
+                    pass
+                elif "a.m" in alarm_command:
+                    pass
+                else:
+                    speak("I'm sorry, I could not understand you.")
 
         REASSURE_STRS = ["i need help", "make me feel better"]
         for phrase in REASSURE_STRS:
             if phrase in text:
-                speak("You're going to be okay, sir.")s
+                speak("You're going to be okay, sir.")
         
         DISMISS_STRS = ["nevermind", "scratch that", "sorry"]
         for phrase in DISMISS_STRS:
